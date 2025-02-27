@@ -21,6 +21,7 @@ type Details =
   Details.List |
   Details.Opportunity |
   Details.Screenshot |
+  Details.Checklist |
   Details.Table;
 
 // Details namespace.
@@ -108,6 +109,11 @@ declare module Details {
     left: number;
   }
 
+  interface Checklist extends BaseDetails {
+    type: 'checklist',
+    items: Record<string, {value: boolean, label: IcuMessage | string}>,
+  }
+
   interface Table extends BaseDetails {
     type: 'table';
     headings: TableColumnHeading[];
@@ -151,7 +157,7 @@ declare module Details {
   type ItemValueType = 'bytes' | 'code' | 'link' | 'ms' | 'multi' | 'node' | 'source-location' | 'numeric' | 'text' | 'thumbnail' | 'timespanMs' | 'url';
 
   /** Possible types of values found within table items. */
-  type ItemValue = string | number | boolean | DebugData | NodeValue | SourceLocationValue | LinkValue | UrlValue | CodeValue | NumericValue | IcuMessage | TableSubItems;
+  type ItemValue = string | number | boolean | DebugData | NodeValue | SourceLocationValue | LinkValue | UrlValue | CodeValue | NumericValue | TextValue | IcuMessage | TableSubItems;
 
   interface TableColumnHeading {
     /**
@@ -230,6 +236,8 @@ declare module Details {
     snippet?: string;
     /** A human-friendly text descriptor that's used to identify the node more quickly. */
     nodeLabel?: string;
+    /** A human-friendly explainer on how to approach the possible fix. */
+    explanation?: string;
   }
 
   /**
@@ -309,6 +317,10 @@ declare module Details {
     granularity?: number,
   }
 
+  interface TextValue {
+    type: 'text',
+    value: IcuMessage | string,
+  }
 }
 
 export default Details;

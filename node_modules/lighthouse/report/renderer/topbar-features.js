@@ -114,6 +114,13 @@ export class TopbarFeatures {
         toggleDarkTheme(this._dom);
         break;
       }
+      case 'toggle-insights': {
+        const swappableSection = this._dom.maybeFind('.lh-perf-audits--swappable');
+        if (swappableSection) {
+          this._dom.swapSectionIfPossible(swappableSection);
+        }
+        break;
+      }
       case 'view-unthrottled-trace': {
         this._reportUIFeatures._opts.onViewTrace?.();
       }
