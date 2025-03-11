@@ -31,3 +31,4 @@ Lume Reports é um projeto full-stack que automatiza a geração de relatórios 
 <br>
 
 ## 📄 Licença
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
