@@ -33,8 +33,8 @@ app.post('/generate-report', async (req, res) => {
 
     try {
         const chrome = await chromeLauncher.launch({
-            chromeFlags: ['--headless'],
-            executablePath: process.env.CHROME_PATH || '/usr/bin/chromium'
+            chromePath: process.env.CHROME_PATH,
+            chromeFlags: ['--headless', '--no-sandbox', '--disable-gpu']
         });
         const options = {
             logLevel,
