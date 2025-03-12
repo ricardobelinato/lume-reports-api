@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "apt-get update && apt-get install -y chromium"
+    "postinstall": "apt-get update && apt-get install -y chromium-browser"
   },
   "author": "Ricardo Belinato",
   "license": "ISC",
