@@ -8,6 +8,7 @@ Lume Reports é um projeto backend que automatiza a geração de desempenho e ac
 - **Express:** Framework para criação da API.
 - **Lighthouse:** Ferramenta para auditoria de desempenho e acessibilidade de páginas.
 - **Chrome Launcher:** Utilizado para executar o Lighthouse em instâncias headless do Chrome.
+- **Jest:** Framework para testes automatizados.
 
 <br>
 
@@ -16,7 +17,8 @@ Lume Reports é um projeto backend que automatiza a geração de desempenho e ac
 • Geração de relatórios JSON com métricas essenciais.<br>
 • Endpoints para iniciar auditorias e consultar relatórios.<br>
 • Armazenamento local de relatórios para análise posterior.<br>
-• Configuração personalizável de categorias de auditoria e métodos de throttling.
+• Configuração personalizável de categorias de auditoria e métodos de throttling.<br>
+• Testes automatizados para garantir a confiabilidade da API.
 
 <br>
 
@@ -42,6 +44,15 @@ Gere um relatório: Envie uma requisição POST para http://localhost:3000/gener
   "logLevel": "info"
 }
 ```
+
+<br>
+
+## 🧪 Testes
+Para rodar os testes automatizados com Jest, execute:
+```js
+npm test
+```
+Isso garantirá que os endpoints e funcionalidades estejam operando corretamente.
 
 <br>
 
