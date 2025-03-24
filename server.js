@@ -1,8 +1,17 @@
 import path from "path";
 import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+let __filename;
+let __dirname;
+
+if (process.env.NODE_ENV !== "test") {
+  __filename = fileURLToPath(import.meta.url);
+  __dirname = path.dirname(__filename);
+} else {
+  // Em ambiente de teste, use o diretório atual como fallback.
+  __filename = "";
+  __dirname = process.cwd();
+}
 
 import express from "express";
 import cors from "cors";
@@ -85,14 +94,12 @@ app.post("/generate-report", async (req, res) => {
 
     fs.writeFileSync(reportPath, JSON.stringify(extractedData, null, 2));
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Report generated successfully",
-        reportPath,
-        data: extractedData,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Report generated successfully",
+      reportPath,
+      data: extractedData,
+    });
 
     await chrome.kill();
   } catch (error) {
@@ -103,6 +110,10 @@ app.post("/generate-report", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server rodando na porta ${PORT}`);
-});
+if (process.env.NODE_ENV !== "test") {
+  app.listen(PORT, () => {
+    console.log(`Server rodando na porta ${PORT}`);
+  });
+}
+
+export default app;
