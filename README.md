@@ -9,6 +9,7 @@ Lume Reports é um projeto backend que automatiza a geração de desempenho e ac
 - **Lighthouse:** Ferramenta para auditoria de desempenho e acessibilidade de páginas.
 - **Chrome Launcher:** Utilizado para executar o Lighthouse em instâncias headless do Chrome.
 - **Jest:** Framework para testes automatizados.
+- **Swagger:** Utilizado para documentar e testar a API de forma interativa.
 
 <br>
 
@@ -18,7 +19,8 @@ Lume Reports é um projeto backend que automatiza a geração de desempenho e ac
 • Endpoints para iniciar auditorias e consultar relatórios.<br>
 • Armazenamento local de relatórios para análise posterior.<br>
 • Configuração personalizável de categorias de auditoria e métodos de throttling.<br>
-• Testes automatizados para garantir a confiabilidade da API.
+• Testes automatizados para garantir a confiabilidade da API.<br>
+• Documentação interativa da API com Swagger para fácil exploração e teste dos endpoints.
 
 <br>
 
@@ -33,10 +35,21 @@ npm install
 npm start
 ```
 
-3. Utilize a API
-Teste a API: Acesse http://localhost:3000/ para verificar se a API está rodando.
+3. Acesse a documentação da API Após iniciar o servidor, acesse a documentação interativa da API no Swagger em:
+```
+http://localhost:3000/api-docs
+```
 
-Gere um relatório: Envie uma requisição POST para http://localhost:3000/generate-report com um JSON no seguinte formato:
+4. Teste a API: <br>
+```
+Verifique se a API está rodando acessando:  
+http://localhost:3000/
+
+Gere um relatório enviando uma requisição POST para:  
+http://localhost:3000/generate-report
+```
+
+Com o seguinte corpo JSON:
 ```json
 {
   "url": "https://exemplo.com",

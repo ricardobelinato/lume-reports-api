@@ -22,8 +22,22 @@ import * as chromeLauncher from "chrome-launcher";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+import setupSwagger from "./swagger.js";
+setupSwagger(app);
+
+
 app.use(cors());
 app.use(express.json());
+
+/**
+ * @openapi
+ * /:
+ *   get:
+ *     summary: Retorna o status da API.
+ *     responses:
+ *       200:
+ *         description: API operando normalmente
+ */
 
 app.get("/", (req, res) => {
   res.json({
@@ -32,6 +46,38 @@ app.get("/", (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+/**
+ * @openapi
+ * /generate-report:
+ *   post:
+ *     summary: Gera um relatório Lighthouse para a URL informada.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               url:
+ *                 type: string
+ *                 example: "https://exemplo.com"
+ *               categories:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                 example: ["performance", "seo"]
+ *               logLevel:
+ *                 type: string
+ *                 example: "info"
+ *     responses:
+ *       200:
+ *         description: Relatório gerado com sucesso
+ *       400:
+ *         description: URL ausente ou inválida
+ *       500:
+ *         description: Erro interno ao gerar o relatório
+ */
 
 app.post("/generate-report", async (req, res) => {
   const {
